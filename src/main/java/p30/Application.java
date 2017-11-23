@@ -35,7 +35,7 @@ public class Application {
 
 	}
 
-	
+	//@Bean(name={"TheView", "AView"})
 	public View getView(){
 		View theView = null;
 		Properties properties = new Properties();
