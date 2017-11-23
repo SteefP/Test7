@@ -4,7 +4,7 @@ import javax.inject.Qualifier;
 
 import org.springframework.stereotype.Component;
 
-@Component("View2")
+@Component("AView")
 public class View2 implements View {
 	
 

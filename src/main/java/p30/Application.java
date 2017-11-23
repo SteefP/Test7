@@ -19,7 +19,7 @@ public class Application {
 
 	public static void main(String[] args) {
 
-		ApplicationContext context = new AnnotationConfigApplicationContext(Application.class, View1.class, View2.class);
+		ApplicationContext context = new AnnotationConfigApplicationContext(Application.class);
 
 		Application app = context.getBean(Application.class);
 		
@@ -35,7 +35,7 @@ public class Application {
 
 	}
 
-	@Bean(name={"View1", "View2"})
+	
 	public View getView(){
 		View theView = null;
 		Properties properties = new Properties();

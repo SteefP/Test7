@@ -1,8 +1,8 @@
 package p30.sub;
 
-import javax.inject.Qualifier;
 
-import org.springframework.beans.factory.annotation.Autowired;
+
+import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.Component;
 
 
@@ -10,8 +10,8 @@ import org.springframework.stereotype.Component;
 public class Controller {
 	
 	
-	@Autowired @Qualifier("View2")
- 	View view2;
+	@Autowired @Qualifier("AView")
+ 	View view;
 	
 	
 	
