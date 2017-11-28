@@ -10,8 +10,8 @@ import org.springframework.stereotype.Component;
 public class Controller {
 	
 	
-	@Autowired @Qualifier(value = "TheView")
- 	View view1;
+	@Autowired @Qualifier("TheView")
+ 	View view;
 	
 	
 	
@@ -25,7 +25,7 @@ public class Controller {
 
 	public void showView(){
 		
-		view1.show();
+		view.show();
 		
 	}
 
