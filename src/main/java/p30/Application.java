@@ -22,9 +22,9 @@ public class Application {
 
 	public static void main(String[] args) {
 
-		ApplicationContext context = new AnnotationConfigApplicationContext(Application.class);
+		ApplicationContext context = new AnnotationConfigApplicationContext();
 
-		Application app = context.getBean(Application.class);
+		Application app = new Application();
 		
 		app.start();
 
@@ -59,4 +59,14 @@ public class Application {
 
 			return theView; 
 	}
+
+	public Controller getController() {
+		return controller;
+	}
+
+	public void setController(Controller controller) {
+		this.controller = controller;
+	}
+	
+	
 }

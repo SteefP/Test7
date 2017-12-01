@@ -37,7 +37,7 @@ public class SimpleChatClientA {
 	public void setUpNetworking(){
 
 		try{
-			sock = new Socket("127.0.0.1", 6000);
+			sock = new Socket("127.0.0.1", 4000);
 			writer = new PrintWriter(sock.getOutputStream());
 			System.out.println("Networking established");
 
