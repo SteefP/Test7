@@ -2,6 +2,7 @@ package h31;
 
 import java.io.*;
 import java.net.*;
+import java.time.LocalDate;
 import java.util.Date;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -25,38 +26,51 @@ public class Server extends Application {
 		@Override
 		public void run() {
 			InetAddress inetAddress = socket.getInetAddress();
-			ta.appendText("clients ip adress = "+inetAddress.getHostAddress());
+			ta.appendText("clients ip adress = "+inetAddress.getHostAddress()+ '\n');
 
-			
+
 
 			try {
 				while(true){
-			
-					String request;
-
-					// Compute area
-					double area;
-				// Create data input and output streams
-				DataInputStream inputFromClient = new DataInputStream(socket.getInputStream());
-				DataOutputStream outputToClient = new DataOutputStream(socket.getOutputStream());
-				request = (inputFromClient).readLine();
 				
-				if(request.contains("GET")&&(request.contains("HTTP")){
+					// Create data input and output streams
+					ObjectInputStream inputFromClient = new ObjectInputStream(socket.getInputStream());
+					ObjectOutputStream outputToClient = new ObjectOutputStream(socket.getOutputStream());
+					Request request = (Request) inputFromClient.readObject();
+
 					
-				}
-				area = radius * radius * Math.PI;
-				// Send area back to the client
-				outputToClient.writeDouble(area);
-				Platform.runLater(() -> {
-					ta.appendText("Radius received from client: " 
-							+ radius + '\n');
-					ta.appendText("Area is: " + area + '\n'); 
-				});
+					String message=null;
+					LocalDate date= LocalDate.now();
+					String server="SteefsServer";
+					String body=null;
+					
+					ta.appendText(request.requestType + '\n');
+					ta.appendText("GET" + '\n');
+					if(request.requestType.equals("GET")){
+					
+						message = "HTTP/"+request.protocolVersie+ " 200 OK";
+					}
+			
+					
+					if(request.resource.equals("index.html")){
+						body = "<html><head>Steef P</head><body>En toen ging steef...</body></html>";
+					}
+					
+					Answer answer = new Answer();
+					answer.setMessage(message);
+					answer.setDate(date);
+					answer.setServer(server);
+					answer.setBody(body);
+					
+					outputToClient.writeObject(answer);
+					Platform.runLater(() -> {
+						// tbd
+					});
 				}
 			} catch (Exception e) {
 				// TODO: handle exception
 			}
-			
+
 		}
 	}
 
@@ -84,7 +98,7 @@ public class Server extends Application {
 					Socket socket = serverSocket.accept();
 
 					Thread thread = new Thread(new ConnectJob(ta, socket));
-					
+
 					thread.start();
 
 				}
