@@ -21,12 +21,6 @@ public class SimpleChatClient {
 	public void go(){
 
 		outgoing = new JTextField(20);
-		
-
-
-	
-
-
 		frame = new JFrame("Ludicrously Simple Chat Client2");
 		panel = new JPanel();
 		JButton button = new JButton("Send");
@@ -63,7 +57,7 @@ public class SimpleChatClient {
 
 	public void setUpNetworking(){
 		try{
-			sock = new Socket("127.0.0.1", 4000);
+			sock = new Socket("192.168.1.3", 4000);
 			reader = new BufferedReader(new InputStreamReader(sock.getInputStream()));
 			writer = new PrintWriter(sock.getOutputStream());
 			System.out.println("Networking established");
