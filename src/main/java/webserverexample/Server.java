@@ -44,7 +44,7 @@ public class Server extends Application {
 				// Listen for a connection request
 				Socket socket = serverSocket.accept();
 
-				// Create data input and output streams
+			
 
 				InputStreamReader isReader = new InputStreamReader(socket.getInputStream());
 
@@ -55,8 +55,7 @@ public class Server extends Application {
 					String input = bReader.readLine();
 					System.out.println(input);
 
-					DataOutputStream outputToClient = new DataOutputStream(
-							socket.getOutputStream());
+					
 
 					// Compute area
 
@@ -75,7 +74,7 @@ public class Server extends Application {
 
 					Platform.runLater(() -> {
 
-						ta.appendText("Request is: " + outputToClient + '\n'); 
+					
 					});
 				}
 			}
