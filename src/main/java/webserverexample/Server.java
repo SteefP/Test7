@@ -44,8 +44,6 @@ public class Server extends Application {
 				// Listen for a connection request
 				Socket socket = serverSocket.accept();
 
-			
-
 				InputStreamReader isReader = new InputStreamReader(socket.getInputStream());
 
 				String HEADER_CONTENT_TYPE_TEXT_HTML = "Content-Type: text/html";
@@ -53,14 +51,12 @@ public class Server extends Application {
 					// Receive radius from the client
 					BufferedReader bReader = new BufferedReader(isReader);
 					String input = bReader.readLine();
+					
+					//om te checken wat chrome zegt
 					System.out.println(input);
 
 					
-
-					// Compute area
-
-
-					// Send area back to the client
+					//klaarzetten outstring en daarna text eraanplakken en schrijven naar clent
 					String out= null;
 					try {
 						out = readFile();
